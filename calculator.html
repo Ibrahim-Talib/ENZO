@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ENZO Fabric Cost Calculator</title>
+  <meta name="description" content="Estimate B2B fabric cost per metre and yard using ENZO supplied machine and kinara rate presets.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-wipe" aria-hidden="true"></div>
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Primary navigation">
+      <a class="brand" href="index.html"><span class="brand__name">ENZO</span><span class="brand__sub">Humayun Ibrahim Textile</span></a>
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><span></span></button>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="catalog.html">Catalog</a>
+        <a href="calculator.html" aria-current="page">Calculator</a>
+      </div>
+      <a class="btn nav-action" data-inquiry="Hello ENZO, I would like to send a fabric cost estimate for quotation review." href="#">Inquiry</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <canvas class="page-visual" data-weave aria-hidden="true"></canvas>
+      <div class="page-hero__content">
+        <p class="eyebrow reveal">Business tool</p>
+        <h1 class="reveal"><span class="accent">Fabric</span> cost calculator.</h1>
+        <p class="lead reveal">Use reed, width, yarn counts, yarn rates, conversion, kinara, brokerage, and FX inputs to prepare a quotation inquiry.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__inner split">
+        <div>
+          <p class="eyebrow reveal">Input variables</p>
+          <h2 class="reveal">Estimate with <span class="accent">production</span> variables.</h2>
+          <p class="lead reveal">The result panel includes PKR per metre, PKR per yard, estimated fabric weight, and bags needed.</p>
+        </div>
+        <div class="panel reveal">
+          <div class="panel__body">
+            <form class="form-grid" data-calculator>
+              <div class="field">
+                <label for="reed">Reed</label>
+                <input id="reed" name="reed" type="number" min="1" value="72">
+              </div>
+              <div class="field">
+                <label for="width">Width inches</label>
+                <input id="width" name="width" type="number" min="1" value="54">
+              </div>
+              <div class="field">
+                <label for="warp">Warp count</label>
+                <input id="warp" name="warp" type="number" min="1" value="40">
+              </div>
+              <div class="field">
+                <label for="weft">Weft count</label>
+                <input id="weft" name="weft" type="number" min="1" value="40">
+              </div>
+              <div class="field">
+                <label for="warpRate">Warp yarn rate</label>
+                <input id="warpRate" name="warpRate" type="number" min="1" value="720">
+              </div>
+              <div class="field">
+                <label for="weftRate">Weft yarn rate</label>
+                <input id="weftRate" name="weftRate" type="number" min="1" value="720">
+              </div>
+              <div class="field">
+                <label for="picks">Picks</label>
+                <input id="picks" name="picks" type="number" min="1" value="56">
+              </div>
+              <div class="field">
+                <label for="metres">Order metres</label>
+                <input id="metres" name="metres" type="number" min="10000" value="10000">
+              </div>
+              <div class="field">
+                <label for="machine">Machine type</label>
+                <select id="machine" name="machine">
+                  <option value="0.85">Auto / Manual - Rs 0.85 per pick</option>
+                  <option value="0.90">Shuttleless - Rs 0.90 per pick</option>
+                  <option value="1.20">Airjet / Waterjet - Rs 1.20 per pick</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="kinara">Kinara type</label>
+                <select id="kinara" name="kinara">
+                  <option value="2.70">72 Hook - Rs 2.70 per metre</option>
+                  <option value="1.97">36 Hook - Rs 1.97 per metre</option>
+                  <option value="1.50">16 Hook - Rs 1.50 per metre</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="fxRate">FX rate</label>
+                <input id="fxRate" name="fxRate" type="number" min="1" value="1">
+              </div>
+              <div class="field">
+                <label for="bagWeight">Bag weight kg</label>
+                <input id="bagWeight" name="bagWeight" type="number" min="1" value="45">
+              </div>
+              <div class="field">
+                <label for="brokerage">Brokerage</label>
+                <select id="brokerage" name="brokerage">
+                  <option value="0">Disabled</option>
+                  <option value="1">Enabled - 1%</option>
+                </select>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band">
+      <div class="section__inner">
+        <p class="eyebrow reveal">Calculated output</p>
+        <h2 class="reveal">Prepared for <span class="accent">quotation</span> review.</h2>
+        <div class="results-grid reveal">
+          <div class="result"><span>Final cost / metre</span><strong data-result="metre">Rs 0.00</strong></div>
+          <div class="result"><span>Final cost / yard</span><strong data-result="yard">Rs 0.00</strong></div>
+          <div class="result"><span>Weight / metre</span><strong data-result="weight">0.000 kg</strong></div>
+          <div class="result"><span>Bags needed</span><strong data-result="bags">0</strong></div>
+        </div>
+        <div class="button-row reveal">
+          <a class="btn btn--solid" data-calc-inquiry href="#">Send estimate</a>
+          <a class="btn" href="catalog.html">Return to catalog</a>
+        </div>
+        <p class="reveal">Estimates are for B2B quotation preparation and should be verified by ENZO before order confirmation.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer__inner">
+      <a class="brand" href="index.html"><span class="brand__name">ENZO</span><span class="brand__sub">Fabric cost calculator</span></a>
+      <div class="footer-links"><span>Machine presets: Auto / Manual, Shuttleless, Airjet / Waterjet</span><span>Kinara presets: 72 Hook, 36 Hook, 16 Hook</span></div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
