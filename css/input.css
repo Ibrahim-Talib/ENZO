@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --dark-navy:    #0E1825;
+  --arctic-navy:  #1E2A39;
+  --steel-blue:   #5C7386;
+  --glacier-blue: #9DB4C6;
+  --silver-mist:  #D6DEE6;
+  --ice-white:    #F5F8FA;
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--dark-navy);
+    color: var(--ice-white);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; }
+
+  /* Context-aware focus rings — Glacier Blue fails 3:1 against Ice White (caught in design session) */
+  :focus-visible {
+    outline: 2px solid #9DB4C6;
+    outline-offset: 3px;
+  }
+  .light-section :focus-visible {
+    outline-color: #0E1825;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* ── Layout ── */
+  .content-rail {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .section-pad {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  @media (max-width: 640px) {
+    .section-pad { padding-top: 48px; padding-bottom: 48px; }
+  }
+
+  /* ── Nav link with left-to-right underline animation ── */
+  .nav-link {
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    color: var(--silver-mist);
+    text-decoration: none;
+    transition: color 0.25s ease;
+    padding-bottom: 2px;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--glacier-blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease-out;
+  }
+  .nav-link:hover,
+  .nav-link[aria-current="page"] { color: var(--ice-white); }
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after { transform: scaleX(1); }
+
+  /* ── Primary CTA — Dark Navy ↔ Ice White ONLY. Never reused for plain text/backgrounds. ── */
+  .btn-primary {
+    display: inline-block;
+    background-color: var(--dark-navy);
+    color: var(--ice-white);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.625rem 1.5rem;
+    border: 1px solid var(--steel-blue);
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+  }
+  .btn-primary:hover { background-color: var(--arctic-navy); }
+
+  /* On light sections: Ice White bg / Dark Navy text (same high-contrast pairing, inverted) */
+  .btn-primary-inv {
+    display: inline-block;
+    background-color: var(--dark-navy);
+    color: var(--ice-white);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.625rem 1.5rem;
+    border: 1px solid var(--steel-blue);
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+  }
+  .btn-primary-inv:hover { background-color: var(--arctic-navy); }
+
+  /* ── Custom cursor ── */
+  #enzo-cursor {
+    position: fixed;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    mix-blend-mode: difference;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 9999;
+    top: 0; left: 0;
+    will-change: transform;
+  }
+
+  /* ── Catalog card image crossfade ── */
+  .card-img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background-color: var(--arctic-navy);
+  }
+  .card-img-fabric,
+  .card-img-lifestyle {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: opacity 0.35s ease-out;
+  }
+  .card-img-lifestyle { opacity: 0; }
+  @media (hover: hover) {
+    .catalog-card:hover .card-img-fabric   { opacity: 0; }
+    .catalog-card:hover .card-img-lifestyle { opacity: 1; }
+  }
+
+  /* ── Timeline ── */
+  .timeline-line {
+    height: 2px;
+    background: var(--glacier-blue);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .timeline-line.drawn { transform: scaleX(1); }
+
+  /* ── Scroll fade-up ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Form inputs (calculator + contact) ── */
+  .enzo-input {
+    width: 100%;
+    background-color: var(--arctic-navy);
+    color: var(--ice-white);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9375rem;
+    padding: 0.625rem 0.875rem;
+    border: 1px solid var(--steel-blue);
+    border-radius: 4px;
+    transition: border-color 0.2s ease;
+    appearance: none;
+  }
+  .enzo-input:focus {
+    outline: none;
+    border-color: var(--glacier-blue);
+    box-shadow: 0 0 0 2px rgba(157, 180, 198, 0.15);
+  }
+
+  .enzo-label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--steel-blue);
+    margin-bottom: 0.375rem;
+  }
+
+  /* ── Color swatch dot ── */
+  .swatch-dot {
+    display: inline-block;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    flex-shrink: 0;
+  }
+}

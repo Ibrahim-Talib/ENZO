@@ -1,142 +1,222 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ENZO Fabric Cost Calculator</title>
-  <meta name="description" content="Estimate B2B fabric cost per metre and yard using ENZO supplied machine and kinara rate presets.">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator | ENZO — Wholesale Fabric Supplier, Lahore</title>
+  <meta name="description" content="ENZO fabric cost estimator — enter reed, width, counts, picks and get live cost per metre, cost per yard, weight, and bags. Send estimate via WhatsApp.">
+  <link rel="icon" href="/assets/logo/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="output.css">
 </head>
 <body>
-  <div class="page-wipe" aria-hidden="true"></div>
-  <header class="site-header">
-    <nav class="nav-shell" aria-label="Primary navigation">
-      <a class="brand" href="index.html"><span class="brand__name">ENZO</span><span class="brand__sub">Humayun Ibrahim Textile</span></a>
-      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><span></span></button>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="catalog.html">Catalog</a>
-        <a href="calculator.html" aria-current="page">Calculator</a>
-      </div>
-      <a class="btn nav-action" data-inquiry="Hello ENZO, I would like to send a fabric cost estimate for quotation review." href="#">Inquiry</a>
-    </nav>
-  </header>
 
-  <main>
-    <section class="page-hero">
-      <canvas class="page-visual" data-weave aria-hidden="true"></canvas>
-      <div class="page-hero__content">
-        <p class="eyebrow reveal">Business tool</p>
-        <h1 class="reveal"><span class="accent">Fabric</span> cost calculator.</h1>
-        <p class="lead reveal">Use reed, width, yarn counts, yarn rates, conversion, kinara, brokerage, and FX inputs to prepare a quotation inquiry.</p>
-      </div>
-    </section>
+<!--NAV-->
 
-    <section class="section">
-      <div class="section__inner split">
+<main>
+
+  <!-- ── PAGE HEADER — Dark Navy ── -->
+  <section style="background-color:#0E1825;padding-top:140px;padding-bottom:56px;" aria-label="Page header">
+    <div class="content-rail">
+      <p class="enzo-label mb-4" style="color:#5C7386;">Live Fabric Cost Estimator</p>
+      <h1 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);line-height:1;letter-spacing:0.02em;color:#F5F8FA;margin:0 0 1rem;">
+        Cost Calculator
+      </h1>
+      <p style="font-size:0.9375rem;color:#D6DEE6;max-width:500px;line-height:1.7;">
+        Enter your weave specifications. Cost per metre, cost per yard, weight, and bags recalculate live. Send the estimate to our WhatsApp to start a quote conversation.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── CALCULATOR — Arctic Navy ── -->
+  <section class="section-pad" style="background-color:#1E2A39;" aria-label="Calculator">
+    <div class="content-rail">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+
+        <!-- ── INPUT PANEL (left) ── -->
         <div>
-          <p class="eyebrow reveal">Input variables</p>
-          <h2 class="reveal">Estimate with <span class="accent">production</span> variables.</h2>
-          <p class="lead reveal">The result panel includes PKR per metre, PKR per yard, estimated fabric weight, and bags needed.</p>
+          <fieldset style="border:none;padding:0;margin:0;">
+            <legend style="font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:0.06em;color:#F5F8FA;margin-bottom:1.5rem;">
+              Weave Specifications
+            </legend>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+              <div>
+                <label for="inp-reed" class="enzo-label">Reed</label>
+                <input id="inp-reed" type="number" min="1" value="72"
+                       class="enzo-input" data-calc-input aria-describedby="reed-hint">
+                <p id="reed-hint" style="font-size:0.6875rem;color:#5C7386;margin-top:0.25rem;">Minimum 1</p>
+              </div>
+
+              <div>
+                <label for="inp-width" class="enzo-label">Width (inches)</label>
+                <input id="inp-width" type="number" min="1" value="54"
+                       class="enzo-input" data-calc-input aria-describedby="width-hint">
+                <p id="width-hint" style="font-size:0.6875rem;color:#5C7386;margin-top:0.25rem;">Minimum 1</p>
+              </div>
+
+              <div>
+                <label for="inp-warp" class="enzo-label">Warp Count</label>
+                <input id="inp-warp" type="number" min="1" value="40"
+                       class="enzo-input" data-calc-input>
+              </div>
+
+              <div>
+                <label for="inp-weft" class="enzo-label">Weft Count</label>
+                <input id="inp-weft" type="number" min="1" value="40"
+                       class="enzo-input" data-calc-input>
+              </div>
+
+              <div>
+                <label for="inp-warp-rate" class="enzo-label">Warp Yarn Rate (PKR)</label>
+                <input id="inp-warp-rate" type="number" min="1" value="720"
+                       class="enzo-input" data-calc-input>
+              </div>
+
+              <div>
+                <label for="inp-weft-rate" class="enzo-label">Weft Yarn Rate (PKR)</label>
+                <input id="inp-weft-rate" type="number" min="1" value="720"
+                       class="enzo-input" data-calc-input>
+              </div>
+
+              <div>
+                <label for="inp-picks" class="enzo-label">Picks</label>
+                <input id="inp-picks" type="number" min="1" value="56"
+                       class="enzo-input" data-calc-input>
+              </div>
+
+              <div>
+                <label for="inp-metres" class="enzo-label">Order Metres</label>
+                <input id="inp-metres" type="number" min="10000" value="10000"
+                       class="enzo-input" data-calc-input aria-describedby="metres-hint">
+                <p id="metres-hint" style="font-size:0.6875rem;color:#5C7386;margin-top:0.25rem;">Minimum 10,000 (MOQ)</p>
+              </div>
+
+            </div>
+          </fieldset>
+
+          <fieldset style="border:none;padding:0;margin:1.75rem 0 0;">
+            <legend style="font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:0.06em;color:#F5F8FA;margin-bottom:1.5rem;">
+              Machine &amp; Rate Parameters
+            </legend>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+              <div>
+                <label for="inp-machine" class="enzo-label">Machine Type</label>
+                <select id="inp-machine" class="enzo-input" data-calc-input>
+                  <option value="0.85" selected>Auto / Manual (0.85)</option>
+                  <option value="0.90">Shuttleless (0.90)</option>
+                  <option value="1.20">Airjet / Waterjet (1.20)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="inp-kinara" class="enzo-label">Kinara Type</label>
+                <select id="inp-kinara" class="enzo-input" data-calc-input>
+                  <option value="2.70" selected>72 Hook (2.70)</option>
+                  <option value="1.97">36 Hook (1.97)</option>
+                  <option value="1.50">16 Hook (1.50)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="inp-fx" class="enzo-label">FX Rate</label>
+                <input id="inp-fx" type="number" min="0.01" step="0.01" value="1"
+                       class="enzo-input" data-calc-input aria-describedby="fx-hint">
+                <p id="fx-hint" style="font-size:0.6875rem;color:#5C7386;margin-top:0.25rem;">Defaults to 1 if empty</p>
+              </div>
+
+              <div>
+                <label for="inp-bag" class="enzo-label">Bag Weight (kg)</label>
+                <input id="inp-bag" type="number" min="1" value="45"
+                       class="enzo-input" data-calc-input aria-describedby="bag-hint">
+                <p id="bag-hint" style="font-size:0.6875rem;color:#5C7386;margin-top:0.25rem;">Defaults to 45 if empty</p>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label for="inp-brokerage" class="enzo-label">Brokerage</label>
+                <select id="inp-brokerage" class="enzo-input" data-calc-input>
+                  <option value="0" selected>Disabled</option>
+                  <option value="1">Enabled (1%)</option>
+                </select>
+              </div>
+
+            </div>
+          </fieldset>
         </div>
-        <div class="panel reveal">
-          <div class="panel__body">
-            <form class="form-grid" data-calculator>
-              <div class="field">
-                <label for="reed">Reed</label>
-                <input id="reed" name="reed" type="number" min="1" value="72">
+
+        <!-- ── OUTPUT PANEL (right, sticky) ── -->
+        <div class="md:sticky md:top-28" data-no-cursor>
+          <div style="background:#0E1825;border:1px solid rgba(92,115,134,0.3);border-radius:8px;padding:2rem;">
+            <p class="enzo-label mb-6" style="color:#5C7386;">Live Estimate</p>
+
+            <div class="flex flex-col gap-5">
+
+              <div style="padding-bottom:1.25rem;border-bottom:1px solid rgba(92,115,134,0.2);">
+                <p class="enzo-label mb-1" style="color:#5C7386;">Cost / Metre</p>
+                <p id="out-cost-metre" style="font-family:'JetBrains Mono',monospace;font-size:1.75rem;font-weight:500;color:#F5F8FA;margin:0;">
+                  Rs —
+                </p>
               </div>
-              <div class="field">
-                <label for="width">Width inches</label>
-                <input id="width" name="width" type="number" min="1" value="54">
+
+              <div style="padding-bottom:1.25rem;border-bottom:1px solid rgba(92,115,134,0.2);">
+                <p class="enzo-label mb-1" style="color:#5C7386;">Cost / Yard</p>
+                <p id="out-cost-yard" style="font-family:'JetBrains Mono',monospace;font-size:1.75rem;font-weight:500;color:#F5F8FA;margin:0;">
+                  Rs —
+                </p>
               </div>
-              <div class="field">
-                <label for="warp">Warp count</label>
-                <input id="warp" name="warp" type="number" min="1" value="40">
+
+              <div class="grid grid-cols-2 gap-4" style="padding-bottom:1.25rem;border-bottom:1px solid rgba(92,115,134,0.2);">
+                <div>
+                  <p class="enzo-label mb-1" style="color:#5C7386;">Weight / Metre</p>
+                  <p id="out-weight-metre" style="font-family:'JetBrains Mono',monospace;font-size:1.125rem;color:#D6DEE6;margin:0;">
+                    — kg
+                  </p>
+                </div>
+                <div>
+                  <p class="enzo-label mb-1" style="color:#5C7386;">Bags Needed</p>
+                  <p id="out-bags" style="font-family:'JetBrains Mono',monospace;font-size:1.125rem;color:#D6DEE6;margin:0;">
+                    —
+                  </p>
+                </div>
               </div>
-              <div class="field">
-                <label for="weft">Weft count</label>
-                <input id="weft" name="weft" type="number" min="1" value="40">
-              </div>
-              <div class="field">
-                <label for="warpRate">Warp yarn rate</label>
-                <input id="warpRate" name="warpRate" type="number" min="1" value="720">
-              </div>
-              <div class="field">
-                <label for="weftRate">Weft yarn rate</label>
-                <input id="weftRate" name="weftRate" type="number" min="1" value="720">
-              </div>
-              <div class="field">
-                <label for="picks">Picks</label>
-                <input id="picks" name="picks" type="number" min="1" value="56">
-              </div>
-              <div class="field">
-                <label for="metres">Order metres</label>
-                <input id="metres" name="metres" type="number" min="10000" value="10000">
-              </div>
-              <div class="field">
-                <label for="machine">Machine type</label>
-                <select id="machine" name="machine">
-                  <option value="0.85">Auto / Manual - Rs 0.85 per pick</option>
-                  <option value="0.90">Shuttleless - Rs 0.90 per pick</option>
-                  <option value="1.20">Airjet / Waterjet - Rs 1.20 per pick</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="kinara">Kinara type</label>
-                <select id="kinara" name="kinara">
-                  <option value="2.70">72 Hook - Rs 2.70 per metre</option>
-                  <option value="1.97">36 Hook - Rs 1.97 per metre</option>
-                  <option value="1.50">16 Hook - Rs 1.50 per metre</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="fxRate">FX rate</label>
-                <input id="fxRate" name="fxRate" type="number" min="1" value="1">
-              </div>
-              <div class="field">
-                <label for="bagWeight">Bag weight kg</label>
-                <input id="bagWeight" name="bagWeight" type="number" min="1" value="45">
-              </div>
-              <div class="field">
-                <label for="brokerage">Brokerage</label>
-                <select id="brokerage" name="brokerage">
-                  <option value="0">Disabled</option>
-                  <option value="1">Enabled - 1%</option>
-                </select>
-              </div>
-            </form>
+
+            </div>
+
+            <!-- WhatsApp CTA -->
+            <div class="flex flex-col gap-3 mt-6">
+              <a id="btn-whatsapp"
+                 href="https://wa.me/923218230266"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="btn-primary"
+                 style="display:block;text-align:center;width:100%;background:#0E1825;border-color:#5C7386;">
+                Send Estimate via WhatsApp
+              </a>
+              <a href="/contact.html"
+                 style="display:block;text-align:center;width:100%;font-family:'Inter',sans-serif;font-size:0.8125rem;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;padding:0.625rem 1.5rem;border:1px solid rgba(92,115,134,0.35);border-radius:4px;color:#9DB4C6;transition:border-color 0.2s ease,color 0.2s ease;"
+                 onmouseenter="this.style.borderColor='#9DB4C6';this.style.color='#F5F8FA';"
+                 onmouseleave="this.style.borderColor='rgba(92,115,134,0.35)';this.style.color='#9DB4C6';">
+                Get a Formal Quote
+              </a>
+            </div>
+
+            <p style="font-size:0.6875rem;color:#5C7386;margin-top:1.25rem;line-height:1.55;text-align:center;">
+              Estimate is indicative. Final quotation confirmed within 1 business day.
+            </p>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="section band">
-      <div class="section__inner">
-        <p class="eyebrow reveal">Calculated output</p>
-        <h2 class="reveal">Prepared for <span class="accent">quotation</span> review.</h2>
-        <div class="results-grid reveal">
-          <div class="result"><span>Final cost / metre</span><strong data-result="metre">Rs 0.00</strong></div>
-          <div class="result"><span>Final cost / yard</span><strong data-result="yard">Rs 0.00</strong></div>
-          <div class="result"><span>Weight / metre</span><strong data-result="weight">0.000 kg</strong></div>
-          <div class="result"><span>Bags needed</span><strong data-result="bags">0</strong></div>
-        </div>
-        <div class="button-row reveal">
-          <a class="btn btn--solid" data-calc-inquiry href="#">Send estimate</a>
-          <a class="btn" href="catalog.html">Return to catalog</a>
-        </div>
-        <p class="reveal">Estimates are for B2B quotation preparation and should be verified by ENZO before order confirmation.</p>
       </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer__inner">
-      <a class="brand" href="index.html"><span class="brand__name">ENZO</span><span class="brand__sub">Fabric cost calculator</span></a>
-      <div class="footer-links"><span>Machine presets: Auto / Manual, Shuttleless, Airjet / Waterjet</span><span>Kinara presets: 72 Hook, 36 Hook, 16 Hook</span></div>
     </div>
-  </footer>
-  <script src="script.js"></script>
+  </section>
+
+</main>
+
+<!--FOOTER-->
+
+<script src="/js/calculator.js"></script>
+<script src="/js/motion.js"></script>
 </body>
 </html>
