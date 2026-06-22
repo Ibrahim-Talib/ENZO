@@ -495,25 +495,6 @@
     }
   }
 
-  /* ── Certification item hover — name underline draw ── */
-  .cert-name {
-    position: relative;
-    display: inline-block;
-    transition: color 0.22s ease;
-  }
-  .cert-name::after {
-    content: '';
-    position: absolute;
-    bottom: -2px; left: 0; right: 0;
-    height: 1px;
-    background: #9DB4C6;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.25s ease-out;
-  }
-  .cert-item:hover .cert-name { color: #F5F8FA; }
-  .cert-item:hover .cert-name::after { transform: scaleX(1); }
-
   /* ── Product carousel ── */
   .carousel-viewport {
     overflow: hidden;
@@ -605,27 +586,6 @@
   @media (prefers-reduced-motion: reduce) {
     #enzo-loader::before { animation: none; }
   }
-  #enzo-loader-bar {
-    align-self: stretch;
-    height: 1px;
-    background: rgba(92,115,134,0.28);
-    margin-top: 1.25rem;
-    position: relative;
-    overflow: hidden;
-  }
-  #enzo-loader-bar::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: #9DB4C6;
-    transform: scaleX(0);
-    transform-origin: left;
-    animation: enzo-bar-draw 0.85s cubic-bezier(0.4, 0, 0.2, 1) 0.12s forwards;
-  }
-  @keyframes enzo-bar-draw {
-    to { transform: scaleX(1); }
-  }
-
   /* ── Certifications slider — continuous right-to-left marquee strip ── */
   .cert-marquee {
     overflow: hidden;
