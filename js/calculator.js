@@ -55,10 +55,14 @@
     setText('out-weight-metre', weightPerMetre.toFixed(3) + ' kg');
     setText('out-bags',         bags.toString());
 
-    // ── WhatsApp deep link ──
+    // ── WhatsApp deep link — calc info in <reed, pick, width, price> order ──
     var msg = encodeURIComponent(
-      'Hello ENZO, I calculated a fabric cost of Rs ' + costMetre.toFixed(2) + '/metre ' +
-      'and Rs ' + costYard.toFixed(2) + '/yard for ' + metres.toLocaleString() + ' metres. ' +
+      'Hello ENZO, I would like a quote for this fabric:\n' +
+      'Reed: ' + reed + '\n' +
+      'Pick: ' + picks + '\n' +
+      'Width: ' + width + '"\n' +
+      'Price: Rs ' + costMetre.toFixed(2) + '/metre\n' +
+      'Quantity: ' + metres.toLocaleString() + ' metres\n' +
       'Please review and quote.'
     );
     var waBtn = get('btn-whatsapp');

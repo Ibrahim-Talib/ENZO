@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build:css": "tailwindcss -i ./css/input.css -o ./dist/output.css --minify",
+    "build:css": "tailwindcss -i ./css/input.css -o ./output.css --minify && node -e \"require('fs').copyFileSync('output.css','dist/output.css')\"",
     "build": "node build.js && npm run build:css",
-    "dev:css": "tailwindcss -i ./css/input.css -o ./dist/output.css --watch",
-    "dev": "node build.js && npm run dev:css"
+    "dev:css": "tailwindcss -i ./css/input.css -o ./output.css --watch",
+    "dev": "npm run dev:css"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.0"

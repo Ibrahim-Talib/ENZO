@@ -5,17 +5,19 @@
   var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!line) return;
 
+  // The container drives both the horizontal (desktop) and vertical (mobile) draw.
+  var section = line.closest('[data-timeline]') || line.parentElement;
+
   if (reduced) {
-    line.classList.add('drawn');
+    section.classList.add('drawn');
     return;
   }
 
   // Fire once when the timeline section enters the viewport — not on every scroll re-entry
-  var section = line.closest('[data-timeline]') || line.parentElement;
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) {
-        line.classList.add('drawn');
+        section.classList.add('drawn');
         io.unobserve(e.target);
       }
     });
